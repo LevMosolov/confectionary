@@ -3,20 +3,16 @@ import {Router,Routes, Route,Redirect, BrowserRouter} from 'react-router-dom'
 import { authRoutes, publicRoutes } from '../routes'
 
 const AppRouter=()=>{
-    const isAuth = false
+    const isAuth = true
     return(
-        
-            <Router>
-                <Routes>
-                    {
-                    isAuth && authRoutes.map(({path, Component})=><Route key={path} path={path} component={Component} exact></Route>)
+        <Routes>  
+                {
+                    isAuth && authRoutes.map(({path, Component})=><Route key={path} path={path} element={<Component/>} exact></Route>)
                 }
                 {
-                    publicRoutes.map(({path, Component})=><Route key={path} path={path} component={Component} exact></Route>)
-                }
-                </Routes>
-                
-            </Router>        
+                    publicRoutes.map(({path, Component})=><Route key={path} path={path} element={<Component/>} exact></Route>)
+                }                
+        </Routes>      
     )
 }
 
